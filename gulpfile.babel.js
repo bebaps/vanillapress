@@ -31,7 +31,9 @@ const SOURCES = {
   ],
   concat: [ // Set the order for JS concatenation
     `${PATHS.js}/es6/data.js`,
+    `${PATHS.js}/es6/helpers.js`,
     `${PATHS.js}/es6/model.js`,
+    `${PATHS.js}/es6/view.js`,
     `${PATHS.js}/es6/app.js`
   ]
 };

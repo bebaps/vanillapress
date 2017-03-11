@@ -10,7 +10,7 @@ var posts = [{
   "slug": "hello-world",
   "type": "posts",
   "title": "Hello world!",
-  "content": "<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p> "
+  "content": "<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>"
 }, {
   "id": 2,
   "date": "2016-01-10T22:05:09",
@@ -18,7 +18,7 @@ var posts = [{
   "slug": "learning-javascript",
   "type": "posts",
   "title": "Learning JavaScript!",
-  "content": "<p>I'm learning JavaScript and super excited!!!</p> "
+  "content": "<p>I'm learning JavaScript and super excited!!!</p>"
 }, {
   "id": 3,
   "date": "2016-01-11T22:05:09",
@@ -26,7 +26,7 @@ var posts = [{
   "slug": "rest-api",
   "type": "posts",
   "title": "The REST API!",
-  "content": "<p>I've started working with the REST API in WordPress, what fun!</p> "
+  "content": "<p>I've started working with the REST API in WordPress, what fun!</p>"
 }, {
   "id": 4,
   "date": "2016-01-12T22:05:09",
@@ -34,7 +34,7 @@ var posts = [{
   "slug": "json-data",
   "type": "posts",
   "title": "JSON Data!",
-  "content": "<p>So, with the REST API it is posible to pull in WordPress data as pure JSON.  Now I'm figuring out what to do with the data</p> "
+  "content": "<p>So, with the REST API it is posible to pull in WordPress data as pure JSON.  Now I'm figuring out what to do with the data</p>"
 }, {
   "id": 5,
   "date": "2016-01-13T22:05:09",
@@ -42,7 +42,7 @@ var posts = [{
   "slug": "javascript-project",
   "type": "posts",
   "title": "JavaScript Project",
-  "content": "<p>I've started working with the REST API in WordPress, what fun!</p> "
+  "content": "<p>Some more sample content to work with</p>"
 }];
 
 var jsonData = JSON.stringify(posts);

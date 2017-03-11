@@ -1,7 +1,7 @@
 // Set up the Model to work with the data
 // -----------------------------------------------------------------------------
 /**
-* Main Model Object
+* Model object
 */
 const model = {};
 
@@ -9,42 +9,41 @@ const model = {};
 * Initialize the Model
 */
 model.init = () => {
-  model.updateLocalStore(jsonData);
-  console.log(model.getPosts());
+  model.setLocalStorage(jsonData);
 };
 
 /**
-* Saves temporary data to local storage
+* Save the temporary data to the browsers local storage
 *
-* @param data {string} JSON string of data to store
+* @param data {string} JSON string of the data to be stored
 */
-model.updateLocalStore = (data) => {
+model.setLocalStorage = (data) => {
   localStorage.setItem('vanillaPress', data);
 };
 
 /**
-* Gets content from local storage
+* Get content from the browsers local storage
 *
-* @return store {object} Object or array of objects of site data
+* @return store {object} JavaScript object or array containing the stored site data
 */
-model.getLocalStore = () => {
+model.getLocalStorage = () => {
   return JSON.parse(localStorage.getItem('vanillaPress'));
 };
 
 /**
-* Gets posts from local storage
+* Gets data from the browsers local storage, and sets to a variable for use
 *
 * @return posts {array} An array of post objects
 */
 model.getPosts = () => {
-  let posts = model.getLocalStore();
+  let posts = model.getLocalStorage();
 
   return posts;
 };
 
 /**
-* Deletes data from local storage
+* Deletes data from the browsers local storage
 */
-model.removeLocalStorate = () => {
+model.deleteLocalStorage = () => {
   localStorage.removeItem('vanillaPress');
 };
