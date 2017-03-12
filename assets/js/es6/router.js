@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * Router obeject
+ * Router object
+ *
+ * @type {Object}
  */
 var router = {};
 
@@ -9,7 +11,7 @@ var router = {};
  * Initialize the Router
  *
  * @method init
- * @return {[type]} [description]
+ * @return {method} The functions to call when the Router loads
  */
 router.init = function () {
   router.loadContent();
@@ -32,12 +34,21 @@ router.getSlug = function () {
   }
 };
 
-// Listen for URL changes
+/**
+ * Listen for changes to the URL hash
+ *
+ * @method listenForChanges
+ */
 router.listenForChanges = function () {
   window.addEventListener('hashchange', router.loadContent, false);
 };
 
-// Load content
+/**
+ * Load content based upon the current slug
+ *
+ * @method loadContent
+ * @return {method} The method to run based upon the URL hash
+ */
 router.loadContent = function () {
   var slug = router.getSlug();
 
@@ -46,6 +57,6 @@ router.loadContent = function () {
   if (null === slug) {
     view.loadBlogPosts();
   } else {
-    console.log('Load the post ' + slug);
+    view.loadPost(slug);
   }
 };

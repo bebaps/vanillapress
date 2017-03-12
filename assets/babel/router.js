@@ -45,7 +45,7 @@ router.listenForChanges = () => {
  * Load content based upon the current slug
  *
  * @method loadContent
- * @return {method}    The method to run based upon the URL hash
+ * @return {method} The method to run based upon the URL hash
  */
 router.loadContent = () => {
   const slug = router.getSlug();
@@ -55,6 +55,6 @@ router.loadContent = () => {
   if (null === slug) {
     view.loadBlogPosts();
   } else {
-    console.log('Load the post ' + slug);
+    view.loadPost(slug);
   }
 }

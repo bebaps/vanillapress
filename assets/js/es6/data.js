@@ -1,7 +1,9 @@
 "use strict";
 
 /**
- * Main JSON object of posts, pages and settings
+ * JSON object of post metadata to use for the application
+ *
+ * @type {Array}
  */
 var posts = [{
   "id": 1,
@@ -45,4 +47,9 @@ var posts = [{
   "content": "<p>Some more sample content to work with</p>"
 }];
 
+/**
+ * Turn the posts array into a usable JSON format
+ *
+ * @type {string}
+ */
 var jsonData = JSON.stringify(posts);

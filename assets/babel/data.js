@@ -11,7 +11,7 @@ const posts = [
     "slug": "hello-world",
     "type": "posts",
     "title": "Hello world!",
-    "content": "<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>"
+    "content": "Welcome to WordPress. This is your first post. Edit or delete it, then start writing!"
   },
   {
     "id": 2,
@@ -20,7 +20,7 @@ const posts = [
     "slug": "learning-javascript",
     "type": "posts",
     "title": "Learning JavaScript!",
-    "content": "<p>I'm learning JavaScript and super excited!!!</p>"
+    "content": "I'm learning JavaScript and super excited!!!"
   },
   {
     "id": 3,
@@ -29,7 +29,7 @@ const posts = [
     "slug": "rest-api",
     "type": "posts",
     "title": "The REST API!",
-    "content": "<p>I've started working with the REST API in WordPress, what fun!</p>"
+    "content": "I've started working with the REST API in WordPress, what fun!"
   },
   {
     "id": 4,
@@ -38,7 +38,7 @@ const posts = [
     "slug": "json-data",
     "type": "posts",
     "title": "JSON Data!",
-    "content": "<p>So, with the REST API it is posible to pull in WordPress data as pure JSON.  Now I'm figuring out what to do with the data</p>"
+    "content": "So, with the REST API it is posible to pull in WordPress data as pure JSON.  Now I'm figuring out what to do with the data"
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@ const posts = [
     "slug": "javascript-project",
     "type": "posts",
     "title": "JavaScript Project",
-    "content": "<p>Some more sample content to work with</p>"
+    "content": "Some more sample content to work with"
   }
 ];
 

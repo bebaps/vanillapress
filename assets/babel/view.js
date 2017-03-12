@@ -58,6 +58,21 @@ view.loadBlogPosts = () => {
 };
 
 /**
+ * Load a single blog post
+ *
+ * @method loadPost
+ * @param  {string} slug The current URL slug
+ */
+view.loadPost = (slug) => {
+  let post = model.getPost(slug),
+      titleEl = helpers.getPageTitle(),
+      postContent = helpers.getContentContainer();
+
+  titleEl.innerHTML = post.title;
+  postContent.innerHTML = post.content;
+};
+
+/**
  * Clear the content from the page
  *
  * @method clearContent

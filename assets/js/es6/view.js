@@ -1,23 +1,26 @@
 'use strict';
 
-// View file for displaying content
-// -----------------------------------------------------------------------------
 /**
-* View object
-*/
+ * View object
+ *
+ * @type {Object}
+ */
 var view = {};
 
 /**
-* Initialize the View
-*/
+ * Initialize the View
+ *
+ * @method init
+ */
 view.init = function () {};
 
 /**
-* Create the markup for the posts
-*
-* @param object {post} Post to create markup for
-* @return object {articleEl} Final post markup
-*/
+ * Create the markup for the posts
+ *
+ * @method createPostMarkup
+ * @param  {object} post Post to create markup for
+ * @return {node} Final post markup
+ */
 view.createPostMarkup = function (post) {
   var articleEl = document.createElement('article'),
       titleEl = document.createElement('h2'),
@@ -38,8 +41,10 @@ view.createPostMarkup = function (post) {
 };
 
 /**
-* Get the post data from local storage, create markup for each one, and append them to the page
-*/
+ * Get the post data from local storage, create markup for each one, and append them to the page
+ *
+ * @method loadBlogPosts
+ */
 view.loadBlogPosts = function () {
   var posts = model.getPosts(),
       postsMarkup = document.createDocumentFragment(),
@@ -52,7 +57,21 @@ view.loadBlogPosts = function () {
   contentContainer.appendChild(postsMarkup);
 };
 
-// Clear the content from the page
+// Load a single blog post
+view.loadPost = function (slug) {
+  var post = model.getPost(slug),
+      titleEl = helpers.getPageTitle(),
+      postContent = helpers.getContentContainer();
+
+  titleEl.innerHTML = post.title;
+  postContent.innerHTML = post.content;
+};
+
+/**
+ * Clear the content from the page
+ *
+ * @method clearContent
+ */
 view.clearContent = function () {
   var titleEl = helpers.getPageTitle(),
       postContent = helpers.getContentContainer();
