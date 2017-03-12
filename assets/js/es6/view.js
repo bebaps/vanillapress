@@ -10,9 +10,7 @@ var view = {};
 /**
 * Initialize the View
 */
-view.init = function () {
-  view.loadBlogPosts();
-};
+view.init = function () {};
 
 /**
 * Create the markup for the posts
@@ -27,7 +25,6 @@ view.createPostMarkup = function (post) {
       titleContent = document.createTextNode(post.title),
       postContent = document.createElement('div');
 
-  console.log(titleAnchor);
   titleAnchor.appendChild(titleContent);
   titleAnchor.href = '#' + post.slug;
   titleEl.appendChild(titleAnchor);
@@ -53,4 +50,13 @@ view.loadBlogPosts = function () {
   }
 
   contentContainer.appendChild(postsMarkup);
+};
+
+// Clear the content from the page
+view.clearContent = function () {
+  var titleEl = helpers.getPageTitle(),
+      postContent = helpers.getContentContainer();
+
+  titleEl.innerHTML = '';
+  postContent.innerHTML = '';
 };

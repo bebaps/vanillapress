@@ -1,5 +1,7 @@
 /**
- * Main JSON object of posts, pages and settings
+ * JSON object of post metadata to use for the application
+ *
+ * @type {Array}
  */
 const posts = [
   {
@@ -49,4 +51,9 @@ const posts = [
   }
 ];
 
+/**
+ * Turn the posts array into a usable JSON format
+ *
+ * @type {string}
+ */
 const jsonData = JSON.stringify(posts);

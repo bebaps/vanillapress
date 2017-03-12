@@ -1,23 +1,26 @@
-// View file for displaying content
-// -----------------------------------------------------------------------------
 /**
-* View object
-*/
+ * View object
+ *
+ * @type {Object}
+ */
 const view = {};
 
 /**
-* Initialize the View
-*/
+ * Initialize the View
+ *
+ * @method init
+ */
 view.init = () => {
-  view.loadBlogPosts();
+
 };
 
 /**
-* Create the markup for the posts
-*
-* @param object {post} Post to create markup for
-* @return object {articleEl} Final post markup
-*/
+ * Create the markup for the posts
+ *
+ * @method createPostMarkup
+ * @param  {object} post Post to create markup for
+ * @return {node} Final post markup
+ */
 view.createPostMarkup = (post) => {
   let articleEl = document.createElement('article'),
       titleEl = document.createElement('h2'),
@@ -38,8 +41,10 @@ view.createPostMarkup = (post) => {
 };
 
 /**
-* Get the post data from local storage, create markup for each one, and append them to the page
-*/
+ * Get the post data from local storage, create markup for each one, and append them to the page
+ *
+ * @method loadBlogPosts
+ */
 view.loadBlogPosts = () => {
   let posts = model.getPosts(),
       postsMarkup = document.createDocumentFragment(),
@@ -50,4 +55,17 @@ view.loadBlogPosts = () => {
   }
 
   contentContainer.appendChild(postsMarkup);
+};
+
+/**
+ * Clear the content from the page
+ *
+ * @method clearContent
+ */
+view.clearContent = () => {
+  let titleEl = helpers.getPageTitle(),
+      postContent = helpers.getContentContainer();
+
+  titleEl.innerHTML = '';
+  postContent.innerHTML = '';
 };
