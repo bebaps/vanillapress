@@ -40,6 +40,19 @@ view.createPostMarkup = (post) => {
   return articleEl;
 };
 
+// Display the menu of pages
+view.createMenu = () => {
+  let listItemEl = document.createElement('li'),
+      pageAnchor = document.createElement('a'),
+      pageAnchorContent = document.createTextNode(pages.title);
+
+  pageAnchor.appendChild(pageAnchorContent);
+  pageAnchor.href = '#' + pages.slug;
+  listItemEl.appendChild(pageAnchor);
+
+  return listItemEl;
+};
+
 /**
  * Get the post data from local storage, create markup for each one, and append them to the page
  *
@@ -71,6 +84,8 @@ view.loadPost = (slug) => {
   titleEl.innerHTML = post.title;
   postContent.innerHTML = post.content;
 };
+
+
 
 /**
  * Clear the content from the page

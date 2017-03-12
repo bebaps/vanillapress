@@ -40,6 +40,19 @@ view.createPostMarkup = function (post) {
   return articleEl;
 };
 
+// Display the menu of pages
+view.createMenu = function () {
+  var listItemEl = document.createElement('li'),
+      pageAnchor = document.createElement('a'),
+      pageAnchorContent = document.createTextNode(pages.title);
+
+  pageAnchor.appendChild(pageAnchorContent);
+  pageAnchor.href = '#' + pages.slug;
+  listItemEl.appendChild(pageAnchor);
+
+  return listItemEl;
+};
+
 /**
  * Get the post data from local storage, create markup for each one, and append them to the page
  *
@@ -57,7 +70,12 @@ view.loadBlogPosts = function () {
   contentContainer.appendChild(postsMarkup);
 };
 
-// Load a single blog post
+/**
+ * Load a single blog post
+ *
+ * @method loadPost
+ * @param  {string} slug The current URL slug
+ */
 view.loadPost = function (slug) {
   var post = model.getPost(slug),
       titleEl = helpers.getPageTitle(),

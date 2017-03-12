@@ -11,7 +11,7 @@ const model = {};
  * @method init
  */
 model.init = () => {
-  model.setLocalStorage(jsonData);
+  model.setLocalStorage(data);
 };
 
 /**
@@ -21,7 +21,7 @@ model.init = () => {
  * @param  {sting} data JSON string of the data to be stored
  */
 model.setLocalStorage = (data) => {
-  localStorage.setItem('vanillaPress', data);
+  localStorage.setItem('vanillaPress', JSON.stringify(data));
 };
 
 /**
@@ -35,13 +35,13 @@ model.getLocalStorage = () => {
 };
 
 /**
- * Gets data from the browsers local storage, and sets to a variable for use
+ * Get posts data from the browsers local storage, and sets to a variable for use
  *
  * @method getPosts
  * @return {array} An array of post objects
  */
 model.getPosts = () => {
-  let posts = model.getLocalStorage();
+  let posts = model.getLocalStorage().posts;
 
   return posts;
 };
@@ -54,13 +54,42 @@ model.getPosts = () => {
  * @return {object}      The post object with a matching slug, or null if there is no match
  */
 model.getPost = (slug) => {
-  let posts = model.getLocalStorage();
-  console.log(posts);
-  console.log(slug);
+  let posts = model.getLocalStorage().posts;
 
   for (let i = 0; i < posts.length; i++) {
     if (slug === posts[i].slug) {
       return posts[i];
+    }
+  }
+
+  return null;
+};
+
+/**
+ * Get pages data from the browsers local storage, and sets to a variable for use
+ *
+ * @method getPages
+ * @return {array} An array of page objects
+ */
+model.getPages = () => {
+  let pages = model.getLocalStorage().pages;
+
+  return pages;
+};
+
+/**
+ * Get a single page based upon the current URL slug
+ *
+ * @method getPage
+ * @param  {string} slug The current URL slug
+ * @return {object}      The page object with a matching slug, or null if there is no match
+ */
+model.getPage = (slug) => {
+  let pages = model.getLocalStorage().pages;
+
+  for (let i = 0; i < pages.length; i++) {
+    if (slug === pages[i].slug) {
+      return pages[i];
     }
   }
 
