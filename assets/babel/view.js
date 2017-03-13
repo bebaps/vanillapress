@@ -81,20 +81,9 @@ view.loadBlogPosts = () => {
  * @param  {String} slug The current URL slug
  */
 view.loadSingle = (slug) => {
-  let content = model.getPost(slug),
+  let content = model.getContent(slug),
       titleEl = helpers.getPageTitle(),
       postContent = helpers.getContentContainer();
-
-  if (null === content) {
-    content = model.getPage(slug);
-  }
-
-  if ( null === content ) {
-    content = {
-      title: '404 Error',
-      content: 'Content not found'
-    }
-  }
 
   titleEl.innerHTML = content.title;
   postContent.innerHTML = content.content;

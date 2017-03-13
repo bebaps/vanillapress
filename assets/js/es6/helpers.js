@@ -99,3 +99,11 @@ helpers.getEditorToggle = function () {
 helpers.getEditorToggleLink = function () {
   return document.querySelector('#editorToggle a');
 };
+
+helpers.getEditorTitleEl = function () {
+  return document.getElementById('editTitle');
+};
+
+helpers.getEditorContentEl = function () {
+  return document.getElementById('editContent');
+};

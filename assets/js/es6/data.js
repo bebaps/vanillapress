@@ -92,6 +92,6 @@ var pages = [{
  * @type {String}
  */
 var data = {
-  'posts': posts,
-  'pages': pages
+  posts: posts,
+  pages: pages
 };

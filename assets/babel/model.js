@@ -104,3 +104,45 @@ model.getPage = (slug) => {
 model.deleteLocalStorage = () => {
   localStorage.removeItem('vanillaPress');
 };
+
+/**
+ * Get the content that is currently on the page
+ *
+ * @method getContent
+ * @return {[type]} [description]
+ */
+model.getContent = (slug) => {
+  let content = model.getPost(slug);
+
+  if (null === content) {
+    content = model.getPage(slug);
+  }
+
+  if ( null === content ) {
+    content = {
+      title: '404 Error',
+      content: 'Content not found'
+    }
+  }
+
+  return content;
+};
+
+/**
+ * Determine what post or page is currently being viewed, and get the content for that page
+ *
+ * @method getCurrentContent
+ * @return {Object} The content of the current post or page
+ */
+model.getCurrentContent = () => {
+  let slug = router.getSlug(),
+      content;
+
+  if (null === slug) {
+    slug = 'home';
+  }
+
+  content = model.getContent(slug);
+
+  return content;
+};
