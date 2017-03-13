@@ -12,14 +12,33 @@ var view = {};
  *
  * @method init
  */
-view.init = function () {};
+view.init = function () {
+  view.createMenu();
+};
+
+/**
+ * Display the menu of pages
+ *
+ * @method createMenu
+ */
+view.createMenu = function () {
+  var pages = model.getPages(),
+      menuMarkup = document.createDocumentFragment(),
+      menuEl = helpers.getMenu();
+
+  for (var i = 0; i < pages.length; i++) {
+    menuMarkup.appendChild(helpers.createMenuItem(pages[i]));
+  }
+
+  menuEl.appendChild(menuMarkup);
+};
 
 /**
  * Create the markup for the posts
  *
  * @method createPostMarkup
- * @param  {object} post Post to create markup for
- * @return {node} Final post markup
+ * @param  {Object} post Post to create markup for
+ * @return {Node} Final post markup
  */
 view.createPostMarkup = function (post) {
   var articleEl = document.createElement('article'),
@@ -57,14 +76,30 @@ view.loadBlogPosts = function () {
   contentContainer.appendChild(postsMarkup);
 };
 
-// Load a single blog post
-view.loadPost = function (slug) {
-  var post = model.getPost(slug),
+/**
+ * Load a single blog post
+ *
+ * @method loadSingle
+ * @param  {String} slug The current URL slug
+ */
+view.loadSingle = function (slug) {
+  var content = model.getPost(slug),
       titleEl = helpers.getPageTitle(),
       postContent = helpers.getContentContainer();
 
-  titleEl.innerHTML = post.title;
-  postContent.innerHTML = post.content;
+  if (null === content) {
+    content = model.getPage(slug);
+  }
+
+  if (null === content) {
+    content = {
+      title: '404 Error',
+      content: 'Content not found'
+    };
+  }
+
+  titleEl.innerHTML = content.title;
+  postContent.innerHTML = content.content;
 };
 
 /**

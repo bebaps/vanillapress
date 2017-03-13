@@ -20,7 +20,7 @@ router.init = () => {
  * Get the slug from the URL
  *
  * @method getSlug
- * @return {string} The slug for the current post or page
+ * @return {String} The slug for the current post or page
  */
 router.getSlug = () => {
   const slug = window.location.hash;
@@ -53,8 +53,10 @@ router.loadContent = () => {
   view.clearContent();
 
   if (null === slug) {
+    view.loadSingle('home');
+  } else if ('blog' === slug){
     view.loadBlogPosts();
   } else {
-    view.loadPost(slug);
+    view.loadSingle(slug);
   }
 }

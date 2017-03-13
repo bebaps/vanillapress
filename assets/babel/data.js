@@ -1,5 +1,5 @@
 /**
- * JSON object of post metadata to use for the application
+ * Arry of post objects for use
  *
  * @type {Array}
  */
@@ -52,8 +52,55 @@ const posts = [
 ];
 
 /**
- * Turn the posts array into a usable JSON format
+ * Array of page objects for use
  *
- * @type {string}
+ * @type {Array}
  */
-const jsonData = JSON.stringify(posts);
+const pages = [
+  {
+    "id": 6,
+    "date": "2016-01-18T22:05:09",
+    "modified": "2016-01-18T22:05:09",
+    "slug": "home",
+    "type": "page",
+    "title": "Home",
+    "content": "Welcome to VanillaPress, my JavaScript site!"
+  },
+  {
+    "id": 7,
+    "date": "2016-01-18T22:05:09",
+    "modified": "2016-01-18T22:05:09",
+    "slug": "about",
+    "type": "page",
+    "title": "About",
+    "content": "A little about me!"
+  },
+  {
+    "id": 8,
+    "date": "2016-01-18T22:05:09",
+    "modified": "2016-01-18T22:05:09",
+    "slug": "blog",
+    "type": "page",
+    "title": "Blog",
+    "content": "Please enjoy my posts"
+  },
+  {
+    "id": 9,
+    "date": "2016-01-18T22:05:09",
+    "modified": "2016-01-18T22:05:09",
+    "slug": "contact",
+    "type": "page",
+    "title": "Contact",
+    "content": "Drop me a line with any questions :)"
+  }
+];
+
+/**
+ * Turn the posts/pages array into a usable JSON format
+ *
+ * @type {String}
+ */
+const data = {
+  'posts': posts,
+  'pages': pages
+};
