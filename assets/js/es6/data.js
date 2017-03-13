@@ -89,7 +89,7 @@ var pages = [{
 /**
  * Turn the posts/pages array into a usable JSON format
  *
- * @type {string}
+ * @type {String}
  */
 var data = {
   'posts': posts,

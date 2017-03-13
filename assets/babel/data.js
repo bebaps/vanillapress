@@ -98,7 +98,7 @@ const pages = [
 /**
  * Turn the posts/pages array into a usable JSON format
  *
- * @type {string}
+ * @type {String}
  */
 const data = {
   'posts': posts,

@@ -11,15 +11,32 @@ const view = {};
  * @method init
  */
 view.init = () => {
+  view.createMenu();
+};
 
+/**
+ * Display the menu of pages
+ *
+ * @method createMenu
+ */
+view.createMenu = () => {
+  let pages = model.getPages(),
+      menuMarkup = document.createDocumentFragment(),
+      menuEl = helpers.getMenu();
+
+  for (var i = 0; i < pages.length; i++) {
+    menuMarkup.appendChild(helpers.createMenuItem(pages[i]));
+  }
+
+  menuEl.appendChild(menuMarkup);
 };
 
 /**
  * Create the markup for the posts
  *
  * @method createPostMarkup
- * @param  {object} post Post to create markup for
- * @return {node} Final post markup
+ * @param  {Object} post Post to create markup for
+ * @return {Node} Final post markup
  */
 view.createPostMarkup = (post) => {
   let articleEl = document.createElement('article'),
@@ -38,19 +55,6 @@ view.createPostMarkup = (post) => {
   articleEl.appendChild(postContent);
 
   return articleEl;
-};
-
-// Display the menu of pages
-view.createMenu = () => {
-  let listItemEl = document.createElement('li'),
-      pageAnchor = document.createElement('a'),
-      pageAnchorContent = document.createTextNode(pages.title);
-
-  pageAnchor.appendChild(pageAnchorContent);
-  pageAnchor.href = '#' + pages.slug;
-  listItemEl.appendChild(pageAnchor);
-
-  return listItemEl;
 };
 
 /**
@@ -73,19 +77,28 @@ view.loadBlogPosts = () => {
 /**
  * Load a single blog post
  *
- * @method loadPost
- * @param  {string} slug The current URL slug
+ * @method loadSingle
+ * @param  {String} slug The current URL slug
  */
-view.loadPost = (slug) => {
-  let post = model.getPost(slug),
+view.loadSingle = (slug) => {
+  let content = model.getPost(slug),
       titleEl = helpers.getPageTitle(),
       postContent = helpers.getContentContainer();
 
-  titleEl.innerHTML = post.title;
-  postContent.innerHTML = post.content;
+  if (null === content) {
+    content = model.getPage(slug);
+  }
+
+  if ( null === content ) {
+    content = {
+      title: '404 Error',
+      content: 'Content not found'
+    }
+  }
+
+  titleEl.innerHTML = content.title;
+  postContent.innerHTML = content.content;
 };
-
-
 
 /**
  * Clear the content from the page

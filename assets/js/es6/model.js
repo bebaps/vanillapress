@@ -30,7 +30,7 @@ model.setLocalStorage = function (data) {
  * Get content from the browsers local storage
  *
  * @method getLocalStorage
- * @return {object} JavaScript object or array containing the stored site data
+ * @return {Object} JavaScript object or array containing the stored site data
  */
 model.getLocalStorage = function () {
   return JSON.parse(localStorage.getItem('vanillaPress'));
@@ -40,7 +40,7 @@ model.getLocalStorage = function () {
  * Get posts data from the browsers local storage, and sets to a variable for use
  *
  * @method getPosts
- * @return {array} An array of post objects
+ * @return {Array} An array of post objects
  */
 model.getPosts = function () {
   var posts = model.getLocalStorage().posts;
@@ -52,8 +52,8 @@ model.getPosts = function () {
  * Get a single post based upon the current URL slug
  *
  * @method getPost
- * @param  {string} slug The current URL slug
- * @return {object}      The post object with a matching slug, or null if there is no match
+ * @param  {String} slug The current URL slug
+ * @return {Object}      The post object with a matching slug, or null if there is no match
  */
 model.getPost = function (slug) {
   var posts = model.getLocalStorage().posts;
@@ -71,7 +71,7 @@ model.getPost = function (slug) {
  * Get pages data from the browsers local storage, and sets to a variable for use
  *
  * @method getPages
- * @return {array} An array of page objects
+ * @return {Array} An array of page objects
  */
 model.getPages = function () {
   var pages = model.getLocalStorage().pages;
@@ -83,8 +83,8 @@ model.getPages = function () {
  * Get a single page based upon the current URL slug
  *
  * @method getPage
- * @param  {string} slug The current URL slug
- * @return {object}      The page object with a matching slug, or null if there is no match
+ * @param  {String} slug The current URL slug
+ * @return {Object}      The page object with a matching slug, or null if there is no match
  */
 model.getPage = function (slug) {
   var pages = model.getLocalStorage().pages;
