@@ -73,3 +73,29 @@ helpers.createLink = function (data) {
 
   return pageAnchor;
 };
+
+/**
+ * Gets the Editor element in the DOM
+ *
+ * @return {Object} Main editor DOM object
+ */
+helpers.getEditorEl = function () {
+  return document.getElementById('editor');
+};
+
+/**
+ * Gets Editor toggle element in the DOM
+ *
+ * @return {Object} Main toggle element
+ */
+helpers.getEditorToggle = function () {
+  return document.getElementById('editorToggle');
+};
+
+/**
+ * Gets editor toggle link Element in the DOM
+ * @return {Object} Main toggle link
+ */
+helpers.getEditorToggleLink = function () {
+  return document.querySelector('#editorToggle a');
+};

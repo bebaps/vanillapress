@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * The application object
+ * The primary VanillaPress application object
  *
  * @type {Object}
  */
@@ -10,6 +10,7 @@ var vanillaPress = {
     model.init();
     router.init();
     view.init();
+    editor.init();
   }
 };
 

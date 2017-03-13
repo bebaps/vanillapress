@@ -1,5 +1,5 @@
 /**
- * The application object
+ * The primary VanillaPress application object
  *
  * @type {Object}
  */
@@ -8,6 +8,7 @@ const vanillaPress = {
     model.init();
     router.init();
     view.init();
+    editor.init();
   }
 };
 

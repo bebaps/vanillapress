@@ -35,6 +35,7 @@ const SOURCES = {
     `${PATHS.js}/es6/model.js`,
     `${PATHS.js}/es6/router.js`,
     `${PATHS.js}/es6/view.js`,
+    `${PATHS.js}/es6/editor.js`,
     `${PATHS.js}/es6/app.js`
   ]
 };
