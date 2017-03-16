@@ -52,15 +52,9 @@ const OPTIONS = {
   },
   browsersync: {
     server: true,
-    ghostMode: {
-      clicks: true,
-      forms: true,
-      scroll: false
-    },
     browser: [
       'google chrome'
     ],
-    reloadOnRestart: true,
     injectChanges: true
   },
   cssnano: {

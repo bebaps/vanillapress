@@ -15,6 +15,73 @@ view.init = () => {
 };
 
 /**
+ * Get the post data from local storage, create markup for each one, and append them to the page
+ *
+ * @method loadBlogPosts
+ */
+view.loadBlogPosts = () => {
+  let posts = model.getPosts(),
+      postsMarkup = document.createDocumentFragment(),
+      contentContainer = helpers.getContentContainer();
+
+  for (let i = 0; i < posts.length; i++) {
+    postsMarkup.appendChild(view.createPostMarkup(posts[i]));
+  }
+
+  contentContainer.appendChild(postsMarkup);
+};
+
+/**
+ * Load a single blog post
+ *
+ * @method loadSingle
+ * @param  {String} slug The current URL slug
+ */
+view.loadSingle = (slug) => {
+  let content = model.getContent(slug),
+      titleEl = helpers.getPageTitle(),
+      postContent = helpers.getContentContainer();
+
+  titleEl.innerHTML = content.title;
+  postContent.innerHTML = content.content;
+};
+
+/**
+ * Update the page title with content in the editor
+ */
+view.updateTitleFromForm = () => {
+  let titleEl = helpers.getPageTitle(),
+      title = helpers.getEditorTitleEl().value;
+
+  titleEl.innerHTML = title;
+  editor.currentContent.title = title;
+};
+
+/**
+ * Update the page content with content in the editor
+ */
+view.updateContentFromForm = () => {
+  let contentEl = helpers.getContentContainer(),
+      content = helpers.getEditorContentEl().value;
+
+  contentEl.innerHTML = content;
+  editor.currentContent.content = content;
+};
+
+/**
+ * Clear the content from the page
+ *
+ * @method clearContent
+ */
+view.clearContent = () => {
+  let titleEl = helpers.getPageTitle(),
+      postContent = helpers.getContentContainer();
+
+  titleEl.innerHTML = '';
+  postContent.innerHTML = '';
+};
+
+/**
  * Display the menu of pages
  *
  * @method createMenu
@@ -55,49 +122,4 @@ view.createPostMarkup = (post) => {
   articleEl.appendChild(postContent);
 
   return articleEl;
-};
-
-/**
- * Get the post data from local storage, create markup for each one, and append them to the page
- *
- * @method loadBlogPosts
- */
-view.loadBlogPosts = () => {
-  let posts = model.getPosts(),
-      postsMarkup = document.createDocumentFragment(),
-      contentContainer = helpers.getContentContainer();
-
-  for (let i = 0; i < posts.length; i++) {
-    postsMarkup.appendChild(view.createPostMarkup(posts[i]));
-  }
-
-  contentContainer.appendChild(postsMarkup);
-};
-
-/**
- * Load a single blog post
- *
- * @method loadSingle
- * @param  {String} slug The current URL slug
- */
-view.loadSingle = (slug) => {
-  let content = model.getContent(slug),
-      titleEl = helpers.getPageTitle(),
-      postContent = helpers.getContentContainer();
-
-  titleEl.innerHTML = content.title;
-  postContent.innerHTML = content.content;
-};
-
-/**
- * Clear the content from the page
- *
- * @method clearContent
- */
-view.clearContent = () => {
-  let titleEl = helpers.getPageTitle(),
-      postContent = helpers.getContentContainer();
-
-  titleEl.innerHTML = '';
-  postContent.innerHTML = '';
 };

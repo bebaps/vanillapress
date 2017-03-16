@@ -3,13 +3,13 @@
  *
  * @type {Object}
  */
-const vanillaPress = {
-  init: () => {
-    model.init();
-    router.init();
-    view.init();
-    editor.init();
-  }
+const vanillaPress = {};
+
+vanillaPress.init = () => {
+  model.init();
+  router.init();
+  view.init();
+  editor.init();
 };
 
 vanillaPress.init();

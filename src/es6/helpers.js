@@ -6,36 +6,6 @@
 const helpers = {};
 
 /**
- * Get the title of the current page
- *
- * @method getPageTitle
- * @return {Node} The title of the current page
- */
-helpers.getPageTitle = () => {
-  return document.getElementById('pageTitle');
-}
-
-/**
- * Get the content container of the current page
- *
- * @method getContentContainer
- * @return {Node} The content container for the current page
- */
-helpers.getContentContainer = () => {
-  return document.getElementById('pageContent');
-}
-
-/**
- * Get the main menu element
- *
- * @method getMenu
- * @return {Node} The main menu for the site
- */
-helpers.getMenu = () => {
-  return document.querySelector('#mainNav ul');
-};
-
-/**
  * Create a new list item for the main menu
  *
  * @method createMenuItem
@@ -61,16 +31,46 @@ helpers.createLink = (data) => {
   let pageAnchor = document.createElement('a'),
       pageAnchorContent = document.createTextNode(data.title);
 
-  pageAnchor.appendChild(pageAnchorContent);
-
   if ('home' === data.slug) {
     pageAnchor.href = '#';
   } else {
     pageAnchor.href = '#' + data.slug;
   }
 
+  pageAnchor.appendChild(pageAnchorContent);
+
   return pageAnchor;
 };
+
+/**
+ * Get the main menu element
+ *
+ * @method getMenu
+ * @return {Node} The main menu for the site
+ */
+helpers.getMenu = () => {
+  return document.querySelector('#mainNav ul');
+};
+
+/**
+ * Get the title of the current page
+ *
+ * @method getPageTitle
+ * @return {Node} The title of the current page
+ */
+helpers.getPageTitle = () => {
+  return document.getElementById('pageTitle');
+}
+
+/**
+ * Get the content container of the current page
+ *
+ * @method getContentContainer
+ * @return {Node} The content container for the current page
+ */
+helpers.getContentContainer = () => {
+  return document.getElementById('pageContent');
+}
 
 /**
  * Gets the Editor element in the DOM
@@ -92,16 +92,36 @@ helpers.getEditorToggle = () => {
 
 /**
  * Gets editor toggle link Element in the DOM
+ *
  * @return {Object} Main toggle link
  */
 helpers.getEditorToggleLink = () => {
   return document.querySelector( '#editorToggle a' );
 };
 
+/**
+ * Get the title input element from the editor
+ *
+ * @return {Object} Editor title input
+ */
 helpers.getEditorTitleEl = () => {
   return document.getElementById('editTitle');
 };
 
+/**
+ * Get the content textarea from the editor
+ *
+ * @return {Object} Editor textarea
+ */
 helpers.getEditorContentEl = () => {
   return document.getElementById('editContent');
+};
+
+/**
+ * Get the editor button
+ *
+ * @return {Object} Editor button
+ */
+helpers.getEditorUpdate = () => {
+  return document.getElementById('editUpdateBtn');
 };
