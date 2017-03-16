@@ -1,15 +1,17 @@
 /**
  * Editor object
- *
  * @type {Object}
  */
 const editor = {};
 
+/**
+ * The current content inside of the editor
+ * @type {String}
+ */
 editor.currentContent = '';
 
 /**
  * Initialize the editor
- *
  * @method init
  */
 editor.init = () => {
@@ -17,10 +19,8 @@ editor.init = () => {
 };
 
 /**
- * Update contentObj
- *
+ * Update the content in the page with the content from the editor
  * @method updateContent
- * @return {[type]}      [description]
  */
 editor.updateContent = () => {
   model.updateContent(editor.currentContent);
@@ -28,7 +28,6 @@ editor.updateContent = () => {
 
 /**
  * Fill the editor form with the content of the current post or page
- *
  * @method fillEditorForm
  * @param  {Obejct} content Content object for the current page or post
  */
@@ -44,6 +43,7 @@ editor.loadEditorForm = (content) => {
 
 /**
  * Listen to the form inputs for content changes
+ * @method addFormListeners
  */
 editor.addFormListeners = () => {
   let formTitle = helpers.getEditorTitleEl(),
@@ -57,7 +57,6 @@ editor.addFormListeners = () => {
 
 /**
  * Listens for the editor toggle button
- *
  * @return {Object} Main editor DOM object
  */
 editor.listener = () => {
@@ -71,7 +70,6 @@ editor.listener = () => {
 
 /**
  * Controls the toggle for the editor
- *
  * @return {Object} Main toggle element
  */
 editor.toggle = () => {

@@ -1,24 +1,23 @@
 /**
  * Model object
- *
  * @type {Object}
  */
 const model = {};
 
 /**
  * Initialize the Model
- *
  * @method init
  */
 model.init = () => {
-  model.setLocalStorage(data);
+  if (!model.checkLocalStorage()) {
+    model.setLocalStorage(data);
+  }
 };
 
 /**
- * Get the content that is currently on the page
- *
+ * Get the content that is currently on the page or generate 404 text
  * @method getContent
- * @return {[type]} [description]
+ * @return {Object} Object containing the content for the current page
  */
 model.getContent = (slug) => {
   let content = model.getPost(slug);
@@ -39,7 +38,6 @@ model.getContent = (slug) => {
 
 /**
  * Determine what post or page is currently being viewed, and get the content for that page
- *
  * @method getCurrentContent
  * @return {Object} The content of the current post or page
  */
@@ -58,7 +56,6 @@ model.getCurrentContent = () => {
 
 /**
  * Get posts data from the browsers local storage, and sets to a variable for use
- *
  * @method getPosts
  * @return {Array} An array of post objects
  */
@@ -70,7 +67,6 @@ model.getPosts = () => {
 
 /**
  * Get a single post based upon the current URL slug
- *
  * @method getPost
  * @param  {String} slug The current URL slug
  * @return {Object}      The post object with a matching slug, or null if there is no match
@@ -89,7 +85,6 @@ model.getPost = (slug) => {
 
 /**
  * Get pages data from the browsers local storage, and sets to a variable for use
- *
  * @method getPages
  * @return {Array} An array of page objects
  */
@@ -101,7 +96,6 @@ model.getPages = () => {
 
 /**
  * Get a single page based upon the current URL slug
- *
  * @method getPage
  * @param  {String} slug The current URL slug
  * @return {Object}      The page object with a matching slug, or null if there is no match
@@ -119,11 +113,9 @@ model.getPage = (slug) => {
 };
 
 /**
- * Update content
- *
+ * Update the content in the page with the content from the editor
  * @method updateContent
- * @param  {[type]}      content [description]
- * @return {[type]}              [description]
+ * @param  {Object}      content The content from the editor
  */
 model.updateContent = (content) => {
   let storage = model.getLocalStorage(),
@@ -153,8 +145,22 @@ model.updateContent = (content) => {
 };
 
 /**
+ * Check if there is data in the browsers local storage
+ * @method checkLocalStorage
+ * @return {Boolean}        True or false
+ */
+model.checkLocalStorage = () => {
+  let storage = model.getLocalStorage();
+
+  if (null === storage) {
+    return false;
+  }
+
+  return true;
+};
+
+/**
  * Get content from the browsers local storage
- *
  * @method getLocalStorage
  * @return {Object} JavaScript object or array containing the stored site data
  */
@@ -164,7 +170,6 @@ model.getLocalStorage = () => {
 
 /**
  * Save the temporary data to the browsers local storage
- *
  * @method setLocalStorage
  * @param  {sting} data JSON string of the data to be stored
  */
@@ -174,7 +179,6 @@ model.setLocalStorage = (data) => {
 
 /**
  * Deletes data from the browsers local storage
- *
  * @method deleteLocalStorage
  */
 model.deleteLocalStorage = () => {

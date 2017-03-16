@@ -1,15 +1,12 @@
 /**
  * Router object
- *
  * @type {Object}
  */
 const router = {};
 
 /**
  * Initialize the Router
- *
  * @method init
- * @return {method} The functions to call when the Router loads
  */
 router.init = () => {
   router.loadContent();
@@ -18,7 +15,6 @@ router.init = () => {
 
 /**
  * Get the slug from the URL
- *
  * @method getSlug
  * @return {String} The slug for the current post or page
  */
@@ -34,7 +30,6 @@ router.getSlug = () => {
 
 /**
  * Listen for changes to the URL hash
- *
  * @method listenForChanges
  */
 router.listenForChanges = () => {
@@ -43,9 +38,7 @@ router.listenForChanges = () => {
 
 /**
  * Load content based upon the current slug
- *
  * @method loadContent
- * @return {method} The method to run based upon the URL hash
  */
 router.loadContent = () => {
   const slug = router.getSlug();

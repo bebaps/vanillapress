@@ -1,13 +1,11 @@
 /**
  * View object
- *
  * @type {Object}
  */
 const view = {};
 
 /**
  * Initialize the View
- *
  * @method init
  */
 view.init = () => {
@@ -16,7 +14,6 @@ view.init = () => {
 
 /**
  * Get the post data from local storage, create markup for each one, and append them to the page
- *
  * @method loadBlogPosts
  */
 view.loadBlogPosts = () => {
@@ -33,7 +30,6 @@ view.loadBlogPosts = () => {
 
 /**
  * Load a single blog post
- *
  * @method loadSingle
  * @param  {String} slug The current URL slug
  */
@@ -48,6 +44,7 @@ view.loadSingle = (slug) => {
 
 /**
  * Update the page title with content in the editor
+ * @method updateTitleFromForm
  */
 view.updateTitleFromForm = () => {
   let titleEl = helpers.getPageTitle(),
@@ -59,6 +56,7 @@ view.updateTitleFromForm = () => {
 
 /**
  * Update the page content with content in the editor
+ * @method updateContentFromForm
  */
 view.updateContentFromForm = () => {
   let contentEl = helpers.getContentContainer(),
@@ -70,7 +68,6 @@ view.updateContentFromForm = () => {
 
 /**
  * Clear the content from the page
- *
  * @method clearContent
  */
 view.clearContent = () => {
@@ -83,7 +80,6 @@ view.clearContent = () => {
 
 /**
  * Display the menu of pages
- *
  * @method createMenu
  */
 view.createMenu = () => {
@@ -100,7 +96,6 @@ view.createMenu = () => {
 
 /**
  * Create the markup for the posts
- *
  * @method createPostMarkup
  * @param  {Object} post Post to create markup for
  * @return {Node} Final post markup
