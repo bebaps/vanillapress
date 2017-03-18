@@ -12,6 +12,7 @@ model.init = () => {
   if (!model.checkLocalStorage()) {
     model.setLocalStorage(data);
   }
+  model.getEditorSettings();
 };
 
 /**
@@ -144,6 +145,18 @@ model.updateContent = (content) => {
   model.setLocalStorage(storage);
 };
 
+model.getEditorSettings = () => {
+  const storage = model.getLocalStorage();
+
+  return storage.settings.openEditor;
+};
+
+model.updateEditorSettings = (editorState) => {
+  const storage = model.getLocalStorage();
+
+  storage.settings.openEditor = editorState;
+  model.setLocalStorage(storage);
+};
 /**
  * Check if there is data in the browsers local storage
  * @method checkLocalStorage

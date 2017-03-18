@@ -104,8 +104,8 @@ editor.animateSaveButton = () => {
           }, 900);
         };
 
-        button.innerText = 'Saving...';
-        saving();
+  button.innerText = 'Saving...';
+  saving();
 };
 
 /**

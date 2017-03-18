@@ -93,11 +93,16 @@ const pages = [
   }
 ];
 
+const settings = {
+  "openEditor": "true"
+};
+
 /**
  * Turn the posts/pages array into a usable JSON format
  * @type {String}
  */
 const data = {
   posts: posts,
-  pages: pages
+  pages: pages,
+  settings: settings
 };
