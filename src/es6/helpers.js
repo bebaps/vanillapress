@@ -40,6 +40,15 @@ helpers.createLink = (data) => {
 };
 
 /**
+ * Grab all the anchors on the page
+ * @method getLinks
+ * @return {Node} All the anchor elements on the page
+ */
+helpers.getLinks = () => {
+  return document.querySelectorAll('a');
+};
+
+/**
  * Get the main menu element
  * @method getMenu
  * @return {Node} The main menu for the site

@@ -41,7 +41,8 @@ router.listenForChanges = () => {
  * @method loadContent
  */
 router.loadContent = () => {
-  const slug = router.getSlug();
+  const slug = router.getSlug(),
+        toggleEl = helpers.getEditorToggle();
 
   view.clearContent();
 
@@ -51,5 +52,11 @@ router.loadContent = () => {
     view.loadBlogPosts();
   } else {
     view.loadSingle(slug);
+  }
+
+  editor.currentContent = model.getCurrentContent(slug);
+
+  if (false === toggleEl.classList.contains('hidden')) {
+    editor.loadEditorForm(editor.currentContent);
   }
 }

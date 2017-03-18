@@ -46,24 +46,20 @@ view.loadSingle = (slug) => {
  * Update the page title with content in the editor
  * @method updateTitleFromForm
  */
-view.updateTitleFromForm = () => {
-  let titleEl = helpers.getPageTitle(),
-      title = helpers.getEditorTitleEl().value;
+view.updateTitle = (title) => {
+  let titleEl = helpers.getPageTitle();
 
   titleEl.innerHTML = title;
-  editor.currentContent.title = title;
 };
 
 /**
  * Update the page content with content in the editor
  * @method updateContentFromForm
  */
-view.updateContentFromForm = () => {
-  let contentEl = helpers.getContentContainer(),
-      content = helpers.getEditorContentEl().value;
+view.updateContent = (content) => {
+  let contentEl = helpers.getContentContainer();
 
   contentEl.innerHTML = content;
-  editor.currentContent.content = content;
 };
 
 /**
