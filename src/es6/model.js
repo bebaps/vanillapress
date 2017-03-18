@@ -12,7 +12,6 @@ model.init = () => {
   if (!model.checkLocalStorage()) {
     model.setLocalStorage(data);
   }
-  model.getEditorSettings();
 };
 
 /**
@@ -44,13 +43,7 @@ model.getContent = (slug) => {
  */
 model.getCurrentContent = () => {
   let slug = router.getSlug(),
-      content;
-
-  if (null === slug) {
-    slug = 'home';
-  }
-
-  content = model.getContent(slug);
+    content = model.getContent(slug);
 
   return content;
 };
@@ -61,9 +54,7 @@ model.getCurrentContent = () => {
  * @return {Array} An array of post objects
  */
 model.getPosts = () => {
-  let posts = model.getLocalStorage().posts;
-
-  return posts;
+  return model.getLocalStorage().posts;
 };
 
 /**
@@ -90,9 +81,7 @@ model.getPost = (slug) => {
  * @return {Array} An array of page objects
  */
 model.getPages = () => {
-  let pages = model.getLocalStorage().pages;
-
-  return pages;
+  return model.getLocalStorage().pages;
 };
 
 /**
@@ -103,6 +92,8 @@ model.getPages = () => {
  */
 model.getPage = (slug) => {
   let pages = model.getLocalStorage().pages;
+
+  if ( null === slug ) slug = 'home';
 
   for (let i = 0; i < pages.length; i++) {
     if (slug === pages[i].slug) {
@@ -120,10 +111,10 @@ model.getPage = (slug) => {
  */
 model.updateContent = (content) => {
   let storage = model.getLocalStorage(),
-      date = new Date();
+    date = new Date();
 
   if ('post' === content.type) {
-    storage.posts.forEach(function(post) {
+    storage.posts.forEach((post) => {
       if (content.id === post.id) {
         post.title = content.title;
         post.content = content.content;
@@ -133,7 +124,7 @@ model.updateContent = (content) => {
   }
 
   if ('page' === content.type) {
-    storage.pages.forEach(function(page) {
+    storage.pages.forEach((page) => {
       if (content.id === page.id) {
         page.title = content.title;
         page.content = content.content;
@@ -145,18 +136,29 @@ model.updateContent = (content) => {
   model.setLocalStorage(storage);
 };
 
-model.getEditorSettings = () => {
-  const storage = model.getLocalStorage();
-
-  return storage.settings.openEditor;
-};
-
+/**
+ * Update the editor settings in local storage
+ * @method updateEditorSettings
+ * @param  {Boolean} editorState
+ */
 model.updateEditorSettings = (editorState) => {
   const storage = model.getLocalStorage();
 
   storage.settings.openEditor = editorState;
   model.setLocalStorage(storage);
 };
+
+/**
+ * Get the editor settings from local storage
+ * @method getEditorSettings
+ * @return {String}
+ */
+model.getEditorSettings = () => {
+  const storage = model.getLocalStorage();
+
+  return storage.settings.openEditor;
+};
+
 /**
  * Check if there is data in the browsers local storage
  * @method checkLocalStorage
@@ -167,9 +169,9 @@ model.checkLocalStorage = () => {
 
   if (null === storage) {
     return false;
+  } else {
+    return true;
   }
-
-  return true;
 };
 
 /**
@@ -184,7 +186,7 @@ model.getLocalStorage = () => {
 /**
  * Save the temporary data to the browsers local storage
  * @method setLocalStorage
- * @param  {sting} data JSON string of the data to be stored
+ * @param  {Object} data JSON string of the data to be stored
  */
 model.setLocalStorage = (data) => {
   localStorage.setItem('vanillaPress', JSON.stringify(data));

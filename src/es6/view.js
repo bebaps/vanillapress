@@ -18,14 +18,16 @@ view.init = () => {
  */
 view.loadBlogPosts = () => {
   let posts = model.getPosts(),
-      postsMarkup = document.createDocumentFragment(),
-      contentContainer = helpers.getContentContainer();
+    postsMarkup = document.createDocumentFragment(),
+    titleEl = helpers.getPageTitle(),
+    contentContainer = helpers.getContentContainer();
 
   for (let i = 0; i < posts.length; i++) {
     postsMarkup.appendChild(view.createPostMarkup(posts[i]));
   }
 
   contentContainer.appendChild(postsMarkup);
+  titleEl.innerHTML = 'Blog Posts';
 };
 
 /**
@@ -35,11 +37,17 @@ view.loadBlogPosts = () => {
  */
 view.loadSingle = (slug) => {
   let content = model.getContent(slug),
-      titleEl = helpers.getPageTitle(),
-      postContent = helpers.getContentContainer();
+    titleEl = helpers.getPageTitle(),
+    postContent = helpers.getContentContainer();
 
   titleEl.innerHTML = content.title;
   postContent.innerHTML = content.content;
+};
+
+//Updates the main title and content for a page or post
+view.updateTitleAndContent = (content) => {
+  view.updateTitle(content.title);
+  view.updateContent(content.content);
 };
 
 /**
@@ -68,7 +76,7 @@ view.updateContent = (content) => {
  */
 view.clearContent = () => {
   let titleEl = helpers.getPageTitle(),
-      postContent = helpers.getContentContainer();
+    postContent = helpers.getContentContainer();
 
   titleEl.innerHTML = '';
   postContent.innerHTML = '';
@@ -80,10 +88,10 @@ view.clearContent = () => {
  */
 view.createMenu = () => {
   let pages = model.getPages(),
-      menuMarkup = document.createDocumentFragment(),
-      menuEl = helpers.getMenu();
+    menuMarkup = document.createDocumentFragment(),
+    menuEl = helpers.getMenu();
 
-  for (var i = 0; i < pages.length; i++) {
+  for (let i = 0; i < pages.length; i++) {
     menuMarkup.appendChild(helpers.createMenuItem(pages[i]));
   }
 
@@ -98,15 +106,11 @@ view.createMenu = () => {
  */
 view.createPostMarkup = (post) => {
   let articleEl = document.createElement('article'),
-      titleEl = document.createElement('h2'),
-      titleAnchor = document.createElement('a'),
-      titleContent = document.createTextNode(post.title),
-      postContent = document.createElement('div');
+    titleEl = document.createElement('h2'),
+    titleLink = helpers.createLink(post),
+    postContent = document.createElement('div');
 
-  titleAnchor.appendChild(titleContent);
-  titleAnchor.href = '#' + post.slug;
-  titleEl.appendChild(titleAnchor);
-
+  titleEl.appendChild(titleLink);
   postContent.appendChild(document.createTextNode(post.content));
 
   articleEl.appendChild(titleEl);

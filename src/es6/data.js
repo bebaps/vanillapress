@@ -1,5 +1,5 @@
 /**
- * Arry of post objects for use
+ * Array of post objects for use
  * @type {Array}
  */
 const posts = [
@@ -93,6 +93,10 @@ const pages = [
   }
 ];
 
+/**
+ * Settings for the editor
+ * @type {String}
+ */
 const settings = {
   "openEditor": "true"
 };

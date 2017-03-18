@@ -22,6 +22,7 @@ editor.unsavedContent = false;
  */
 editor.init = () => {
   editor.listener();
+  editor.getEditorState();
 };
 
 /**
@@ -36,22 +37,6 @@ editor.saveContent = () => {
 };
 
 /**
- * Inform the user that the content in the editor is not saved
- * @method protectUnsavedContent
- */
-editor.protectUnsavedContent = () => {
-  if (true === editor.unsavedContent) {
-    const confirmed = window.confirm('You should save your changes first!');
-
-    if (!confirmed) {
-      event.preventDefault();
-    } else {
-      editor.unsavedContent = false;
-    }
-  }
-};
-
-/**
  * Update the content with the title from the editor
  * @method updateTitle
  */
@@ -61,7 +46,7 @@ editor.updateTitle = () => {
   editor.currentContent.title = title;
   editor.unsavedContent = true;
   view.updateTitle(title);
-}
+};
 
 /**
  * Update the content with the content from the editor
@@ -73,36 +58,43 @@ editor.updateContent = () => {
   editor.currentContent.content = content;
   editor.unsavedContent = true;
   view.updateContent(content);
-}
+};
 
 /**
  * Fill the editor form with the content of the current post or page
  * @method fillEditorForm
- * @param  {Obejct} content Content object for the current page or post
+ * @param  {Object} content Content object for the current page or post
  */
 editor.loadEditorForm = (content) => {
   let formTitle = helpers.getEditorTitleEl(),
-      formContent = helpers.getEditorContentEl();
+    formContent = helpers.getEditorContentEl();
 
   formTitle.value = content.title;
   formContent.value = content.content;
 
+  if ( 'blog' === content.slug ) {
+    formContent.setAttribute( 'readonly', 'readonly' );
+  } else {
+    formContent.removeAttribute( 'readonly' );
+  }
+
   editor.addFormListeners();
 };
 
+//Add comment
 editor.animateSaveButton = () => {
   const button = helpers.getEditorUpdate(),
-        saving = () => {
-          setTimeout(() => {
-            button.innerText = 'Saved!';
-            saved();
-          }, 1000);
-        },
-        saved = () => {
-          setTimeout(() => {
-            button.innerText = 'Update';
-          }, 900);
-        };
+    saved = () => {
+      setTimeout(() => {
+        button.innerText = 'Update';
+      }, 1000);
+    },
+    saving = () => {
+      setTimeout(() => {
+        button.innerText = 'Saved!';
+        saved();
+      }, 900);
+    };
 
   button.innerText = 'Saving...';
   saving();
@@ -114,9 +106,9 @@ editor.animateSaveButton = () => {
  */
 editor.addFormListeners = () => {
   let formTitle = helpers.getEditorTitleEl(),
-      formContent = helpers.getEditorContentEl(),
-      formButton = helpers.getEditorUpdate(),
-      links = helpers.getLinks();
+    formContent = helpers.getEditorContentEl(),
+    formButton = helpers.getEditorUpdate(),
+    links = helpers.getLinks();
 
   formTitle.addEventListener('input', editor.updateTitle, false);
   formContent.addEventListener('input', editor.updateContent, false);
@@ -128,16 +120,41 @@ editor.addFormListeners = () => {
 };
 
 /**
+ * Inform the user that the content in the editor is not saved
+ * @method protectUnsavedContent
+ */
+editor.protectUnsavedContent = () => {
+  if (true === editor.unsavedContent) {
+    const confirmed = window.confirm('You should save your changes first!');
+
+    if (false === confirmed) {
+      event.preventDefault();
+    } else {
+      editor.unsavedContent = false;
+    }
+  }
+};
+
+/**
  * Listens for the editor toggle button
  * @method listener
  */
 editor.listener = () => {
   let toggle = helpers.getEditorToggle();
 
-  toggle.addEventListener('click', function() {
+  toggle.addEventListener('click', () => {
     editor.toggle();
     event.preventDefault();
   }, false);
+};
+
+//Add comment
+editor.getEditorState = () => {
+  const hidden = model.getEditorSettings();
+
+  if ( false === hidden ) {
+    editor.toggle();
+  }
 };
 
 /**
@@ -146,7 +163,8 @@ editor.listener = () => {
  */
 editor.toggle = () => {
   let editorEl = helpers.getEditorEl(),
-      editorToggle = helpers.getEditorToggle();
+    editorToggle = helpers.getEditorToggle(),
+    links = helpers.getLinks();
 
   editor.currentContent = model.getCurrentContent();
 
@@ -155,5 +173,12 @@ editor.toggle = () => {
 
   if (false === editorToggle.classList.contains('hidden')) {
     editor.loadEditorForm(editor.currentContent);
+    model.updateEditorSettings( false );
+  } else {
+    model.updateEditorSettings( true );
+
+    links.forEach( ( link ) => {
+      link.removeEventListener('click', editor.protectUnsavedContent, false);
+    });
   }
 };

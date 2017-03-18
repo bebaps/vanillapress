@@ -26,7 +26,7 @@ helpers.createMenuItem = (data) => {
  */
 helpers.createLink = (data) => {
   let pageAnchor = document.createElement('a'),
-      pageAnchorContent = document.createTextNode(data.title);
+    pageAnchorContent = document.createTextNode(data.title);
 
   if ('home' === data.slug) {
     pageAnchor.href = '#';
@@ -37,15 +37,6 @@ helpers.createLink = (data) => {
   pageAnchor.appendChild(pageAnchorContent);
 
   return pageAnchor;
-};
-
-/**
- * Grab all the anchors on the page
- * @method getLinks
- * @return {Node} All the anchor elements on the page
- */
-helpers.getLinks = () => {
-  return document.querySelectorAll('a');
 };
 
 /**
@@ -64,7 +55,16 @@ helpers.getMenu = () => {
  */
 helpers.getPageTitle = () => {
   return document.getElementById('pageTitle');
-}
+};
+
+/**
+ * Grab all the anchors on the page
+ * @method getLinks
+ * @return {NodeList} All the anchor elements on the page
+ */
+helpers.getLinks = () => {
+  return document.querySelectorAll('a');
+};
 
 /**
  * Get the content container of the current page
@@ -73,7 +73,7 @@ helpers.getPageTitle = () => {
  */
 helpers.getContentContainer = () => {
   return document.getElementById('pageContent');
-}
+};
 
 /**
  * Gets the Editor element in the DOM
@@ -90,7 +90,7 @@ helpers.getEditorEl = () => {
  * @return {Object} Main toggle element
  */
 helpers.getEditorToggle = () => {
- return document.getElementById('editorToggle');
+  return document.getElementById('editorToggle');
 };
 
 /**
@@ -99,7 +99,7 @@ helpers.getEditorToggle = () => {
  * @return {Object} Main toggle link
  */
 helpers.getEditorToggleLink = () => {
-  return document.querySelector( '#editorToggle a' );
+  return document.querySelector('#editorToggle a');
 };
 
 /**
