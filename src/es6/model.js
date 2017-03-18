@@ -9,8 +9,8 @@ const model = {};
  * @method init
  */
 model.init = () => {
-  if (!model.checkLocalStorage()) {
-    model.setLocalStorage(data);
+  if ( !model.checkLocalStorage() ) {
+    model.setLocalStorage( data );
   }
 };
 
@@ -19,14 +19,14 @@ model.init = () => {
  * @method getContent
  * @return {Object} Object containing the content for the current page
  */
-model.getContent = (slug) => {
-  let content = model.getPost(slug);
+model.getContent = ( slug ) => {
+  let content = model.getPost( slug );
 
-  if (null === content) {
-    content = model.getPage(slug);
+  if ( null === content ) {
+    content = model.getPage( slug );
   }
 
-  if (null === content) {
+  if ( null === content ) {
     content = {
       title: '404 Error',
       content: 'Content not found'
@@ -37,19 +37,18 @@ model.getContent = (slug) => {
 };
 
 /**
- * Determine what post or page is currently being viewed, and get the content for that page
+ * Determine what post/page is currently being viewed, and get its content
  * @method getCurrentContent
- * @return {Object} The content of the current post or page
+ * @return {Object} The content of the current post/page
  */
 model.getCurrentContent = () => {
-  let slug = router.getSlug(),
-    content = model.getContent(slug);
+  const slug = router.getSlug();
 
-  return content;
+  return model.getContent( slug );
 };
 
 /**
- * Get posts data from the browsers local storage, and sets to a variable for use
+ * Get the posts data from the browsers local storage, and sets to a variable for use
  * @method getPosts
  * @return {Array} An array of post objects
  */
@@ -63,12 +62,12 @@ model.getPosts = () => {
  * @param  {String} slug The current URL slug
  * @return {Object}      The post object with a matching slug, or null if there is no match
  */
-model.getPost = (slug) => {
-  let posts = model.getLocalStorage().posts;
+model.getPost = ( slug ) => {
+  const posts = model.getLocalStorage().posts;
 
-  for (let i = 0; i < posts.length; i++) {
-    if (slug === posts[i].slug) {
-      return posts[i];
+  for ( let i = 0; i < posts.length; i++ ) {
+    if ( slug === posts[ i ].slug ) {
+      return posts[ i ];
     }
   }
 
@@ -90,14 +89,14 @@ model.getPages = () => {
  * @param  {String} slug The current URL slug
  * @return {Object}      The page object with a matching slug, or null if there is no match
  */
-model.getPage = (slug) => {
-  let pages = model.getLocalStorage().pages;
+model.getPage = ( slug ) => {
+  const pages = model.getLocalStorage().pages;
 
   if ( null === slug ) slug = 'home';
 
-  for (let i = 0; i < pages.length; i++) {
-    if (slug === pages[i].slug) {
-      return pages[i];
+  for ( let i = 0; i < pages.length; i++ ) {
+    if ( slug === pages[ i ].slug ) {
+      return pages[ i ];
     }
   }
 
@@ -105,35 +104,35 @@ model.getPage = (slug) => {
 };
 
 /**
- * Update the content in the page with the content from the editor
+ * Update the content in the post/page with the content from the editor
  * @method updateContent
  * @param  {Object}      content The content from the editor
  */
-model.updateContent = (content) => {
-  let storage = model.getLocalStorage(),
-    date = new Date();
+model.updateContent = ( content ) => {
+  const storage = model.getLocalStorage(),
+        date    = new Date();
 
-  if ('post' === content.type) {
-    storage.posts.forEach((post) => {
-      if (content.id === post.id) {
+  if ( 'post' === content.type ) {
+    storage.posts.forEach( ( post ) => {
+      if ( content.id === post.id ) {
         post.title = content.title;
         post.content = content.content;
         post.modified = date.toISOString();
       }
-    });
+    } );
   }
 
-  if ('page' === content.type) {
-    storage.pages.forEach((page) => {
-      if (content.id === page.id) {
+  if ( 'page' === content.type ) {
+    storage.pages.forEach( ( page ) => {
+      if ( content.id === page.id ) {
         page.title = content.title;
         page.content = content.content;
         page.modified = date.toISOString();
       }
-    });
+    } );
   }
 
-  model.setLocalStorage(storage);
+  model.setLocalStorage( storage );
 };
 
 /**
@@ -141,17 +140,17 @@ model.updateContent = (content) => {
  * @method updateEditorSettings
  * @param  {Boolean} editorState
  */
-model.updateEditorSettings = (editorState) => {
+model.updateEditorSettings = ( editorState ) => {
   const storage = model.getLocalStorage();
 
   storage.settings.openEditor = editorState;
-  model.setLocalStorage(storage);
+  model.setLocalStorage( storage );
 };
 
 /**
  * Get the editor settings from local storage
  * @method getEditorSettings
- * @return {String}
+ * @return {Boolean}
  */
 model.getEditorSettings = () => {
   const storage = model.getLocalStorage();
@@ -165,13 +164,13 @@ model.getEditorSettings = () => {
  * @return {Boolean}        True or false
  */
 model.checkLocalStorage = () => {
-  let storage = model.getLocalStorage();
+  const storage = model.getLocalStorage();
 
-  if (null === storage) {
+  if ( null === storage ) {
     return false;
-  } else {
-    return true;
   }
+
+  return true;
 };
 
 /**
@@ -180,7 +179,7 @@ model.checkLocalStorage = () => {
  * @return {Object} JavaScript object or array containing the stored site data
  */
 model.getLocalStorage = () => {
-  return JSON.parse(localStorage.getItem('vanillaPress'));
+  return JSON.parse( localStorage.getItem( 'vanillaPress' ) );
 };
 
 /**
@@ -188,8 +187,8 @@ model.getLocalStorage = () => {
  * @method setLocalStorage
  * @param  {Object} data JSON string of the data to be stored
  */
-model.setLocalStorage = (data) => {
-  localStorage.setItem('vanillaPress', JSON.stringify(data));
+model.setLocalStorage = ( data ) => {
+  localStorage.setItem( 'vanillaPress', JSON.stringify( data ) );
 };
 
 /**
@@ -197,5 +196,5 @@ model.setLocalStorage = (data) => {
  * @method deleteLocalStorage
  */
 model.deleteLocalStorage = () => {
-  localStorage.removeItem('vanillaPress');
+  localStorage.removeItem( 'vanillaPress' );
 };

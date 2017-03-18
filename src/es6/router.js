@@ -21,11 +21,11 @@ router.init = () => {
 router.getSlug = () => {
   const slug = window.location.hash;
 
-  if ('' === slug) {
+  if ( '' === slug ) {
     return null;
-  } else {
-    return slug.substr(1);
   }
+
+  return slug.substr( 1 );
 };
 
 /**
@@ -33,7 +33,7 @@ router.getSlug = () => {
  * @method listenForChanges
  */
 router.listenForChanges = () => {
-  window.addEventListener('hashchange', router.loadContent, false);
+  window.addEventListener( 'hashchange', router.loadContent, false );
 };
 
 /**
@@ -41,23 +41,23 @@ router.listenForChanges = () => {
  * @method loadContent
  */
 router.loadContent = () => {
-  const slug = router.getSlug(),
-    content = model.getContent(slug),
-    editorEl = helpers.getEditorEl();
+  const slug     = router.getSlug(),
+        content  = model.getContent( slug ),
+        editorEl = helpers.getEditorEl();
 
   view.clearContent();
 
-  if (null === slug) {
-    view.loadSingle('home');
-  } else if ('blog' === slug) {
+  if ( null === slug ) {
+    view.loadSingle( 'home' );
+  } else if ( 'blog' === slug ) {
     view.loadBlogPosts();
   } else {
-    view.loadSingle(slug);
+    view.loadSingle( slug );
   }
 
   editor.currentContent = content;
 
-  if (false === editorEl.classList.contains('hidden')) {
-    editor.loadEditorForm(editor.currentContent);
+  if ( false === editorEl.classList.contains( 'hidden' ) ) {
+    editor.loadEditorForm( editor.currentContent );
   }
 };
