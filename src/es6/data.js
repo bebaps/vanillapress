@@ -1,6 +1,5 @@
 /**
  * Arry of post objects for use
- *
  * @type {Array}
  */
 const posts = [
@@ -53,7 +52,6 @@ const posts = [
 
 /**
  * Array of page objects for use
- *
  * @type {Array}
  */
 const pages = [
@@ -95,12 +93,16 @@ const pages = [
   }
 ];
 
+const settings = {
+  "openEditor": "true"
+};
+
 /**
  * Turn the posts/pages array into a usable JSON format
- *
  * @type {String}
  */
 const data = {
-  'posts': posts,
-  'pages': pages
+  posts: posts,
+  pages: pages,
+  settings: settings
 };
