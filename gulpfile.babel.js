@@ -6,11 +6,11 @@
  */
 const PATHS = new function() {
   this.dist = './dist',
-  this.src = './src',
-  this.css = `${this.dist}/css`,
-  this.js = `${this.dist}/js`,
-  this.es6 = `${this.src}/es6`,
-  this.scss = `${this.src}/scss`;
+    this.src = './src',
+    this.css = `${this.dist}/css`,
+    this.js = `${this.dist}/js`,
+    this.es6 = `${this.src}/es6`,
+    this.scss = `${this.src}/scss`;
 };
 
 /**
@@ -18,6 +18,7 @@ const PATHS = new function() {
  * @type {Object}
  */
 const SOURCES = {
+  html: ['./index.html'],
   css: [
     `${PATHS.css}/*.css`,
     `!${PATHS.css}/*.min.css`
@@ -48,7 +49,7 @@ const SOURCES = {
  */
 const OPTIONS = {
   autoprefixer: {
-    browsers: ['> 1%', 'last 2 versions']
+    browsers: [ '> 1%', 'last 2 versions' ]
   },
   browsersync: {
     server: true,
@@ -81,10 +82,10 @@ const OPTIONS = {
     lazy: true
   },
   stylelint: {
-    reporters: [{
+    reporters: [ {
       formatter: 'string',
       console: true
-    }]
+    } ]
   }
 };
 
@@ -96,124 +97,125 @@ import del from 'del';
 import postscss from 'postcss-scss';
 import reporter from 'postcss-reporter';
 
-const BROWSERSYNC = require('browser-sync').create();
-const $ = require('gulp-load-plugins')(OPTIONS.loadplugins);
+const BROWSERSYNC = require( 'browser-sync' ).create();
+const $ = require( 'gulp-load-plugins' )( OPTIONS.loadplugins );
 
 // Utility Tasks
 // -----------------------------------------------------------------------------
 /**
  * Delete compiled CSS files and sourcemap(s)
  */
-gulp.task('clean:css', () => {
-  del(`${PATHS.css}/*.css`);
-});
+gulp.task( 'clean:css', () => {
+  del( `${PATHS.css}/*.css` );
+} );
 
 /**
  * Delete compiled JS files and sourcemap(s)
  */
-gulp.task('clean:js', () => {
-  del(`${PATHS.js}/*.js`);
-});
+gulp.task( 'clean:js', () => {
+  del( `${PATHS.js}/*.js` );
+} );
 
 // Server Tasks
 // -----------------------------------------------------------------------------
 /**
  * Start a server
  */
-gulp.task('server', () => {
-  BROWSERSYNC.init(OPTIONS.browsersync);
-});
+gulp.task( 'server', () => {
+  BROWSERSYNC.init( OPTIONS.browsersync );
+} );
 
 // Sass Tasks
 // -----------------------------------------------------------------------------
 /**
  * Lint Sass via Stylelint
  */
-gulp.task('scss:lint', () => {
+gulp.task( 'scss:lint', () => {
   return gulp
-  .src(SOURCES.scss)
-  .pipe($.plumber())
-  .pipe($.stylelint(OPTIONS.stylelint));
-});
+    .src( SOURCES.scss )
+    .pipe( $.plumber() )
+    .pipe( $.stylelint( OPTIONS.stylelint ) );
+} );
 
 /**
  * Compile and minify Sass, then create a sourcemap
  */
-gulp.task('scss', ['clean:css'], () => {
+gulp.task( 'scss', [ 'clean:css' ], () => {
   return gulp
-  .src(SOURCES.scss)
-  .pipe($.sourcemaps.init())
-  .pipe($.plumber())
-  .pipe($.sass()
-    .on('error', $.sass.logError))
-  .on('error', $.notify.onError('Error compiling Sass!'))
-  .pipe($.autoprefixer(OPTIONS.autoprefixer))
-  .pipe($.cssnano(OPTIONS.cssnano))
-  .pipe($.rename({
-    suffix: '.min'
-  }))
-  .pipe($.sourcemaps.write('/'))
-  .pipe($.plumber.stop())
-  .pipe(gulp.dest(PATHS.css))
-  .pipe(BROWSERSYNC.stream());
-});
+    .src( SOURCES.scss )
+    .pipe( $.sourcemaps.init() )
+    .pipe( $.plumber() )
+    .pipe( $.sass()
+      .on( 'error', $.sass.logError ) )
+    .on( 'error', $.notify.onError( 'Error compiling Sass!' ) )
+    .pipe( $.autoprefixer( OPTIONS.autoprefixer ) )
+    .pipe( $.cssnano( OPTIONS.cssnano ) )
+    .pipe( $.rename( {
+      suffix: '.min'
+    } ) )
+    .pipe( $.sourcemaps.write( '/' ) )
+    .pipe( $.plumber.stop() )
+    .pipe( gulp.dest( PATHS.css ) )
+    .pipe( BROWSERSYNC.stream() );
+} );
 
 // JS Tasks
 // -----------------------------------------------------------------------------
 /**
  * Lint JS via ESLint
  */
-gulp.task('js:lint', () => {
+gulp.task( 'js:lint', () => {
   return gulp
-  .src(SOURCES.es6)
-  .pipe($.plumber())
-  .pipe($.babel())
-  .pipe($.eslint())
-  .pipe($.eslint.format())
-  .pipe($.eslint.failAfterError());
-});
+    .src( SOURCES.es6 )
+    .pipe( $.plumber() )
+    .pipe( $.babel() )
+    .pipe( $.eslint() )
+    .pipe( $.eslint.format() )
+    .pipe( $.eslint.failAfterError() );
+} );
 
 /**
  * Compile from ES2015
  */
-gulp.task('babel', () => {
+gulp.task( 'babel', () => {
   return gulp
-  .src(SOURCES.es6)
-  .pipe($.babel())
-  .pipe(gulp.dest(`${PATHS.js}/ES2015`));
-});
+    .src( SOURCES.es6 )
+    .pipe( $.babel() )
+    .pipe( gulp.dest( `${PATHS.js}/ES2015` ) );
+} );
 
 /**
  * Concatenate and minify JS, then create a sourcemap
  */
-gulp.task('js', ['clean:js'], () => {
+gulp.task( 'js', [ 'clean:js' ], () => {
   return gulp
-  .src(SOURCES.concat)
-  .pipe($.sourcemaps.init())
-  .pipe($.plumber())
-  .pipe($.babel())
-  .pipe($.concat('main.js'))
-  .pipe($.uglify())
-  .pipe($.rename({
-    suffix: '.min'
-  }))
-  .pipe($.sourcemaps.write('/'))
-  .pipe($.plumber.stop())
-  .pipe(gulp.dest(PATHS.js))
-  .pipe(BROWSERSYNC.stream());
-});
+    .src( SOURCES.concat )
+    .pipe( $.sourcemaps.init() )
+    .pipe( $.plumber() )
+    .pipe( $.babel() )
+    .pipe( $.concat( 'main.js' ) )
+    .pipe( $.uglify() )
+    .pipe( $.rename( {
+      suffix: '.min'
+    } ) )
+    .pipe( $.sourcemaps.write( '/' ) )
+    .pipe( $.plumber.stop() )
+    .pipe( gulp.dest( PATHS.js ) )
+    .pipe( BROWSERSYNC.stream() );
+} );
 
 // Defaults
 // -----------------------------------------------------------------------------
 /**
  * Watch files for changes
  */
-gulp.task('watch', () => {
-  gulp.watch(SOURCES.scss, ['scss']);
-  gulp.watch(SOURCES.js, ['js']);
-});
+gulp.task( 'watch', () => {
+  gulp.watch( SOURCES.scss, [ 'scss' ] );
+  gulp.watch( SOURCES.js, [ 'js' ] );
+  gulp.watch( SOURCES.html, BROWSERSYNC.stream() );
+} );
 
 /**
  * Default task
  */
-gulp.task('default', ['server', 'watch']);
+gulp.task( 'default', [ 'server', 'watch' ] );

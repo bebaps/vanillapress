@@ -10,10 +10,10 @@ const helpers = {};
  * @param  {Object} data The current post or page of the page
  * @return {Node} A new list item of the main menu
  */
-helpers.createMenuItem = (data) => {
-  let listItemEl = document.createElement('li');
+helpers.createMenuItem = ( data ) => {
+  const listItemEl = document.createElement( 'li' );
 
-  listItemEl.appendChild(helpers.createLink(data));
+  listItemEl.appendChild( helpers.createLink( data ) );
 
   return listItemEl;
 };
@@ -24,28 +24,19 @@ helpers.createMenuItem = (data) => {
  * @param  {Object} data The current post or page of the page
  * @return {Node} The complete anchor for the current post or page
  */
-helpers.createLink = (data) => {
-  let pageAnchor = document.createElement('a'),
-      pageAnchorContent = document.createTextNode(data.title);
+helpers.createLink = ( data ) => {
+  const pageAnchor        = document.createElement( 'a' ),
+        pageAnchorContent = document.createTextNode( data.title );
 
-  if ('home' === data.slug) {
+  if ( 'home' === data.slug ) {
     pageAnchor.href = '#';
   } else {
     pageAnchor.href = '#' + data.slug;
   }
 
-  pageAnchor.appendChild(pageAnchorContent);
+  pageAnchor.appendChild( pageAnchorContent );
 
   return pageAnchor;
-};
-
-/**
- * Grab all the anchors on the page
- * @method getLinks
- * @return {Node} All the anchor elements on the page
- */
-helpers.getLinks = () => {
-  return document.querySelectorAll('a');
 };
 
 /**
@@ -54,7 +45,7 @@ helpers.getLinks = () => {
  * @return {Node} The main menu for the site
  */
 helpers.getMenu = () => {
-  return document.querySelector('#mainNav ul');
+  return document.querySelector( '#mainNav ul' );
 };
 
 /**
@@ -63,8 +54,17 @@ helpers.getMenu = () => {
  * @return {Node} The title of the current page
  */
 helpers.getPageTitle = () => {
-  return document.getElementById('pageTitle');
-}
+  return document.getElementById( 'pageTitle' );
+};
+
+/**
+ * Grab all the anchors on the page
+ * @method getLinks
+ * @return {NodeList} All the anchor elements on the page
+ */
+helpers.getLinks = () => {
+  return document.querySelectorAll( 'a' );
+};
 
 /**
  * Get the content container of the current page
@@ -72,8 +72,8 @@ helpers.getPageTitle = () => {
  * @return {Node} The content container for the current page
  */
 helpers.getContentContainer = () => {
-  return document.getElementById('pageContent');
-}
+  return document.getElementById( 'pageContent' );
+};
 
 /**
  * Gets the Editor element in the DOM
@@ -81,7 +81,7 @@ helpers.getContentContainer = () => {
  * @return {Object} Main editor DOM object
  */
 helpers.getEditorEl = () => {
-  return document.getElementById('editor');
+  return document.getElementById( 'editor' );
 };
 
 /**
@@ -90,7 +90,7 @@ helpers.getEditorEl = () => {
  * @return {Object} Main toggle element
  */
 helpers.getEditorToggle = () => {
- return document.getElementById('editorToggle');
+  return document.getElementById( 'editorToggle' );
 };
 
 /**
@@ -108,7 +108,7 @@ helpers.getEditorToggleLink = () => {
  * @return {Object} Editor title input
  */
 helpers.getEditorTitleEl = () => {
-  return document.getElementById('editTitle');
+  return document.getElementById( 'editTitle' );
 };
 
 /**
@@ -117,7 +117,7 @@ helpers.getEditorTitleEl = () => {
  * @return {Object} Editor textarea
  */
 helpers.getEditorContentEl = () => {
-  return document.getElementById('editContent');
+  return document.getElementById( 'editContent' );
 };
 
 /**
@@ -126,5 +126,5 @@ helpers.getEditorContentEl = () => {
  * @return {Object} Editor button
  */
 helpers.getEditorUpdate = () => {
-  return document.getElementById('editUpdateBtn');
+  return document.getElementById( 'editUpdateBtn' );
 };

@@ -1,5 +1,5 @@
 /**
- * Arry of post objects for use
+ * Array of post objects for use
  * @type {Array}
  */
 const posts = [
@@ -93,13 +93,17 @@ const pages = [
   }
 ];
 
+/**
+ * Settings for the editor
+ * @type {Object}
+ */
 const settings = {
-  "openEditor": "true"
+  openEditor: true
 };
 
 /**
  * Turn the posts/pages array into a usable JSON format
- * @type {String}
+ * @type {Object}
  */
 const data = {
   posts: posts,

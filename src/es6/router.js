@@ -11,7 +11,7 @@ const router = {};
 router.init = () => {
   router.loadContent();
   router.listenForChanges();
-}
+};
 
 /**
  * Get the slug from the URL
@@ -21,42 +21,43 @@ router.init = () => {
 router.getSlug = () => {
   const slug = window.location.hash;
 
-  if ('' === slug) {
+  if ( '' === slug ) {
     return null;
-  } else {
-    return slug.substring(1);
   }
-}
+
+  return slug.substr( 1 );
+};
 
 /**
  * Listen for changes to the URL hash
  * @method listenForChanges
  */
 router.listenForChanges = () => {
-  window.addEventListener('hashchange', router.loadContent, false);
-}
+  window.addEventListener( 'hashchange', router.loadContent, false );
+};
 
 /**
  * Load content based upon the current slug
  * @method loadContent
  */
 router.loadContent = () => {
-  const slug = router.getSlug(),
-        toggleEl = helpers.getEditorToggle();
+  const slug     = router.getSlug(),
+        content  = model.getContent( slug ),
+        editorEl = helpers.getEditorEl();
 
   view.clearContent();
 
-  if (null === slug) {
-    view.loadSingle('home');
-  } else if ('blog' === slug){
+  if ( null === slug ) {
+    view.loadSingle( 'home' );
+  } else if ( 'blog' === slug ) {
     view.loadBlogPosts();
   } else {
-    view.loadSingle(slug);
+    view.loadSingle( slug );
   }
 
-  editor.currentContent = model.getCurrentContent(slug);
+  editor.currentContent = content;
 
-  if (false === toggleEl.classList.contains('hidden')) {
-    editor.loadEditorForm(editor.currentContent);
+  if ( false === editorEl.classList.contains( 'hidden' ) ) {
+    editor.loadEditorForm( editor.currentContent );
   }
-}
+};

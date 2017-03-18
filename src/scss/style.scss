@@ -10,6 +10,7 @@ html {
 #editor h1 {
   margin: 1rem 0 2rem;
 }
+
 #editor h1, #editor h2, #editor h3, #editor h4, #editor h5 {
   color: #555;
   font-weight: lighter;
@@ -27,33 +28,40 @@ body {
 #view body, #view p {
   font-family: "Helvetica Neue", "Open Sans", sans-serif;
 }
+
 #view h1, #view h2, #view h3, #view h4, #view h5, #view h6 {
   font-family: "Montserrat";
   font-weight: normal;
 }
+
 #view .page-header h1 {
   font-family: "Pacifico";
   font-size: 2.2rem;
   margin: 1rem 0 0;
   color: #222;
 }
+
 #view .page-header h1 a {
   text-decoration: none;
 }
+
 #view .page-header h2 {
   color: #222;
   font-size: 1.2rem;
   margin: .4rem 0 0;
   font-weight: lighter;
 }
+
 #view .primary p {
   font-size: 1.2rem;
   line-height: 2rem;
   color: #222;
 }
+
 #view .sidebar p {
   font-size: 1rem;
 }
+
 #view .footer p {
   font-size: .8rem;
   font-family: "Montserrat";
@@ -64,9 +72,11 @@ body {
 #editor ul {
   padding: 0;
 }
+
 #editor ul li {
   list-style-position: inside;
 }
+
 #editor nav {
   display: none;
   margin: -20px;
@@ -77,14 +87,17 @@ body {
   border-bottom: 1px solid #eee;
   position: relative;
 }
+
 #editor nav.active {
   display: block;
 }
+
 #editor nav #addNew {
   position: absolute;
   top: 42px;
   right: 14px;
 }
+
 #editor nav #addNew a {
   text-decoration: none;
   padding: 0px 6px;
@@ -95,26 +108,33 @@ body {
   color: #fff;
   font-weight: bold;
 }
+
 #editor nav #addNew a.hidden {
   display: none;
 }
+
 #editor nav h3 {
   padding: 20px;
   text-transform: capitalize;
 }
+
 #editor nav h3 a {
   color: #555;
 }
+
 #editor nav ul {
   padding: 0;
   margin: 0;
 }
+
 #editor nav ul li {
   list-style: none;
 }
+
 #editor nav ul li:first-child {
   border-top: 1px solid #eee;
 }
+
 #editor nav ul li > a {
   padding: 15px 20px;
   display: block;
@@ -123,13 +143,16 @@ body {
   text-decoration: none;
   position: relative;
 }
+
 #editor nav ul li > a:hover {
   background: #f5f5f5;
   color: #23282d;
 }
+
 #editor nav ul li > a:hover:after {
   color: #23282d;
 }
+
 #editor nav ul li > a:after {
   content: ">";
   position: absolute;
@@ -142,11 +165,13 @@ body {
   font-family: "Montserrat";
   margin: 40px 0 20px;
 }
+
 #view #mainNav ul {
   padding: 0;
   margin: 0;
   text-align: center;
 }
+
 #view #mainNav ul li {
   display: inline-block;
   list-style: none;
@@ -154,28 +179,34 @@ body {
   margin: 0;
   font-size: 1.4rem;
 }
+
 #view #mainNav ul li a {
   color: #222;
   padding: 10px;
   text-decoration: none;
 }
+
 #view #mainNav ul li a:hover {
   color: #0085ba;
 }
+
 #view #menuIcon {
   display: none;
   background: #000;
   width: 100%;
   text-align: center;
 }
+
 #view #menuIcon:hover {
   background: #999;
 }
+
 #view #menuIcon a {
   width: 100%;
   display: inline-block;
   color: #fff;
 }
+
 #view #menuIcon a img {
   vertical-align: middle;
 }
@@ -216,14 +247,17 @@ body {
     display: inline-block;
   }
 }
+
 #editorToggle {
   position: absolute;
   bottom: 5px;
   left: 25px;
 }
+
 #editorToggle a {
   color: #0085ba;
 }
+
 #editorToggle a .arrow {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
@@ -233,9 +267,11 @@ body {
   left: -25px;
   position: absolute;
 }
+
 #editorToggle a:hover label {
   cursor: pointer;
 }
+
 #editorToggle.hidden a {
   background: #0085ba;
   width: 5px;
@@ -246,6 +282,7 @@ body {
   bottom: 0px;
   left: -20px;
 }
+
 #editorToggle.hidden a .arrow {
   border-right: 5px solid transparent;
   border-top: 5px solid transparent;
@@ -254,6 +291,7 @@ body {
   left: 40%;
   bottom: 5px;
 }
+
 #editorToggle.hidden a label {
   display: none;
 }
@@ -262,21 +300,26 @@ body {
   background: #fff;
   padding: 40px 20px;
 }
+
 #view.inactive a {
   cursor: not-allowed;
 }
+
 #view .container {
   margin: 20px auto 0;
   max-width: 960px;
 }
+
 #view .container .page-header {
   text-align: center;
 }
+
 #view .container .content {
   background: #fff;
   padding: 10px 20px;
   border: 1px #ddd solid;
 }
+
 #view .container .content .primary {
   width: calc(100% - 20px);
   padding: 10px;
@@ -287,12 +330,15 @@ body {
   border-top: 1px #ededed solid;
   padding: 5px 0 10px;
 }
+
 #view .container .content .primary #pageContent article h3 {
   font-size: 1.2rem;
 }
+
 #view .container .content .primary #pageContent article p {
   font-size: 1rem;
 }
+
 #view .container .content .sidebar {
   width: calc(100% - 20px);
   padding: 10px;
@@ -324,6 +370,7 @@ body {
   height: 100vh;
   background-color: #000;
 }
+
 #wrapper #editor {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -338,9 +385,11 @@ body {
   padding: 20px;
   border-right: 2px #ddd solid;
 }
+
 #wrapper #editor.hidden {
   display: none;
 }
+
 #wrapper #view {
   -webkit-box-flex: 3;
   -moz-box-flex: 3;
@@ -352,9 +401,11 @@ body {
   padding: 0 10px;
   background: #ededed;
 }
+
 #wrapper #view a {
   color: #0085ba;
 }
+
 #wrapper #view .content {
   display: block;
   clear: both;
@@ -376,6 +427,7 @@ body {
   flex-direction: row;
   -ms-flex-direction: row;
 }
+
 #wrapper #view .content .primary {
   -webkit-box-flex: 3;
   -moz-box-flex: 3;
@@ -385,6 +437,7 @@ body {
   -ms-flex: 3;
   flex: 3;
 }
+
 #wrapper #view .content .sidebar {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -407,6 +460,7 @@ body {
   color: #999;
   font-weight: lighter;
 }
+
 #edit input,
 #edit button,
 #edit textarea,
@@ -421,6 +475,7 @@ body {
   padding: 10px;
   border: 1px #eee solid;
 }
+
 #edit input:focus,
 #edit button:focus,
 #edit textarea:focus,
@@ -428,6 +483,7 @@ body {
 #edit iframe.wysiwyg:focus {
   border-color: #555;
 }
+
 #edit input:read-only,
 #edit button:read-only,
 #edit textarea:read-only,
@@ -435,6 +491,7 @@ body {
 #edit iframe.wysiwyg:read-only {
   color: #ccc;
 }
+
 #edit textarea, #edit .CodeMirror, #edit .CodeMirror-scroll, #edit iframe.wysiwyg {
   min-height: 300px;
   max-height: 400px;
@@ -442,6 +499,7 @@ body {
   line-height: 1.8rem;
   padding: 5px;
 }
+
 #edit iframe.wysiwyg {
   margin-left: 10px;
   width: 93%;
@@ -449,19 +507,23 @@ body {
   /* margin: 0; */
   border: 1px #ccc solid;
 }
+
 #edit #editUpdateBtn {
   background: #0085ba;
   color: #fff;
   font-weight: lighter;
   position: relative;
 }
+
 #edit #deletePost {
   margin-left: 10px;
   font-size: .8rem;
 }
+
 #edit #deletePost a {
   color: #999;
 }
+
 #edit #deletePost a.hidden {
   display: none;
 }
@@ -511,19 +573,20 @@ body {
   0%,
   80%,
   100% {
-    box-shadow: 0 2.5em 0 -1.3em #ffffff;
+    box-shadow: 0 2.5em 0 -1.3em #fff;
   }
   40% {
-    box-shadow: 0 2.5em 0 0 #ffffff;
+    box-shadow: 0 2.5em 0 0 #fff;
   }
 }
+
 @keyframes load7 {
   0%,
   80%,
   100% {
-    box-shadow: 0 2.5em 0 -1.3em #ffffff;
+    box-shadow: 0 2.5em 0 -1.3em #fff;
   }
   40% {
-    box-shadow: 0 2.5em 0 0 #ffffff;
+    box-shadow: 0 2.5em 0 0 #fff;
   }
 }
